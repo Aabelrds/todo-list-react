@@ -1,0 +1,38 @@
+.navbar {
+    display: flex;
+    padding: 8px 24px;
+    background-color: #DB4B3F;
+    color: white;
+    align-items: center;
+
+    &__left {
+        flex: 1;
+        align-items: center;
+
+        display: flex;
+
+        &__item {
+            margin-right: 16px;
+
+            &__input {
+                background-color: rgba(255,255,255,.3);
+                border: none;
+                padding: 4px 16px;
+                border-radius: 6px;
+                outline: none;
+                color: white;
+            }
+        }
+    }
+
+    &__right {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        &__item {
+            margin-left: 16px;
+        }
+    }
+};

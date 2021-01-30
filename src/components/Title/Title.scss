@@ -1,0 +1,16 @@
+.title {
+    display: flex;
+    align-items: center;
+
+    &__left {
+        flex: 1;
+    }
+
+    &__right {
+        flex: none;
+
+        &__item {
+            margin-left: 16px;
+        }
+    }   
+}
