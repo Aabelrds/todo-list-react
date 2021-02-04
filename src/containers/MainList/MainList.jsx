@@ -1,26 +1,14 @@
-import { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import Title from "../../components/Title";
 import Card from "../../components/Card";
 import AddTodoForm from "../../components/AddTodoForm";
+import { selectIsAddingTodo, setIsAddingTodo } from '../../appSlice';
 import "./MainList.scss";
 
 function MainList(props) {
-  const [isAddingTodo, setIsAddingTodo] = useState(false);
-
-  const closeTodo = () => {
-    setIsAddingTodo(false);
-  };
-
-  const addTodo = (todo) => {
-    props.addTodo(todo);
-    closeTodo();
-  };
-
-  const handleTodo = todo => props.handleTodo(todo);
-
-  const removeTodo = todo => props.removeTodo(todo);
-
-  const addComment = (todo, comment) => props.addComment(todo, comment);
+  const dispatch = useDispatch();
+  const isAddingTodo = useSelector(selectIsAddingTodo); 
 
   return (
     <section className="mainlist">
@@ -31,21 +19,18 @@ function MainList(props) {
           <Card
             key={todo.id}
             todo={todo}
-            handleTodo={handleTodo}
-            removeTodo={removeTodo}
             type={props.type}
-            addComment={addComment}
           />
         ))}
       </div>
 
-      {props.canAddTodo && <div onClick={() => setIsAddingTodo(!isAddingTodo)}>
+      {props.canAddTodo && <div onClick={() => dispatch(setIsAddingTodo(!isAddingTodo))}>
         Añadir Tarea
       </div>}
 
       {isAddingTodo && (
         <div>
-          <AddTodoForm addTodo={addTodo} cancelTodo={closeTodo} />
+          <AddTodoForm />
         </div>
       )}
     </section>

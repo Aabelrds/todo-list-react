@@ -1,28 +1,31 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt, faCommentAlt } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faCommentAlt } from '@fortawesome/free-solid-svg-icons';
+import { removeTodo, whenCompleteTodo, whenUncompleteTodo } from '../../appSlice';
 import AddComment from '../AddComment';
 import "./Card.scss";
 
 const Card = (props) => {
+  const dispatch = useDispatch();
   const { type, todo } = props;
   const [isOpenComment, setIsOpenComment] = useState(false);
 
   const handleTodo = () => {
-    props.handleTodo(todo);
+    if (type === "completed") {
+      dispatch(whenUncompleteTodo(todo))
+    } else {
+      dispatch(whenCompleteTodo(todo))
+    }
   };
 
   const onClickDelete = () => {
-    props.removeTodo(todo);
+    dispatch(removeTodo(todo))
   }
 
   const onClickComment = () => setIsOpenComment(!isOpenComment);
 
   const cancelEditing = () => setIsOpenComment(false);
-
-  const addComment = comment => {
-    props.addComment(todo, comment)
-  }
 
   return (
     <>
@@ -47,8 +50,8 @@ const Card = (props) => {
         </div>
       </div>
       {isOpenComment && <AddComment
+        todo={todo}
         cancelEditing={cancelEditing}
-        addComment={addComment}
       />}
       {todo.comment && <div>Comentario: {todo.comment}</div>}
       <div className="separator" />
