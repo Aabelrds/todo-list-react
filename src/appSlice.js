@@ -1,4 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
+import { addTodoReducer } from './appReducers'
 import storage from "./services/storage";
 
 const defaultItems = [
@@ -32,14 +33,7 @@ export const appSlice = createSlice({
     isAddingTodo: false,
   },
   reducers: {
-    addTodo: (state, action) => {
-      const todos = [...state.todos, action.payload];
-
-      state.todos = todos;
-      state.isAddingTodo = false;
-
-      storage.set("todos", todos);
-    },
+    addTodo: addTodoReducer,
     setIsAddingTodo: (state, action) => {
       state.isAddingTodo = action.payload;
     },
