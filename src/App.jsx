@@ -110,7 +110,6 @@ const App = () => {
       <div className="App">
         <Navbar />
         <div>Hola</div>
-        <div>Adios</div>
         <Switch>
           <Route
             path="/completed"
