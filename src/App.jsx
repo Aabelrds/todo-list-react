@@ -109,6 +109,7 @@ const App = () => {
     <Router>
       <div className="App">
         <Navbar />
+        <div>Hola</div>
         <Switch>
           <Route
             path="/completed"
