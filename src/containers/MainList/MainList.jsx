@@ -25,7 +25,7 @@ function MainList(props) {
   return (
     <section className="mainlist">
       <Title title={props.name} />
-
+      <div>Otra funcionalidad</div>
       <div>
         {props.items.map((todo) => (
           <Card
