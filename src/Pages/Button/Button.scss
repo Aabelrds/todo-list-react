@@ -1,0 +1,17 @@
+.button {
+    &--primary {
+        background-color: blue;
+    }
+
+    &--alert {
+        background-color: red;
+    }
+
+    &--secondary {
+        background-color: grey;
+    }
+    
+    &--disabled {
+        background-color: grey;
+    }
+}
